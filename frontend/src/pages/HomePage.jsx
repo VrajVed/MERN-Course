@@ -6,17 +6,18 @@ import { Link } from 'react-router-dom'
 
 const HomePage = () => {
 
-  const {fetchProducts, products} = useProductStore();
+  const { fetchProducts, products } = useProductStore();
 
-  useEffect(()=>{
+  useEffect(() => {
     fetchProducts();
-  },  [fetchProducts]);
+  }, [fetchProducts]);
+  console.log("products", products);
 
-  console.log(products);
+
 
   return (
     <Container maxW={"container.xl"} py={12}>
-      <VStack spacing={8}> 
+      <VStack spacing={8}>
         <Text
           fontSize={"3xl"}
           fontWeight={'bold'}
@@ -33,17 +34,17 @@ const HomePage = () => {
             lg: 3
           }}
           spacing={10}
-          w={'full' }
+          w={'full'}
         >
           {products.map((product) => (
-            <ProductCard key={product._id} product={product}/>
+            <ProductCard key={product._id} product={product} />
           ))}
         </SimpleGrid>
 
         <Text fontSize={"xl"} textAlign={"center"}>
           No products found 😭😭😭{" "}
           <Link to={"/create"}>
-            <Text  as="span" color="blue.500" _hover={{textDecoration: "underline"}}>
+            <Text as="span" color="blue.500" _hover={{ textDecoration: "underline" }}>
               Create a Product !
             </Text>
           </Link>
